@@ -1,0 +1,77 @@
+{% extends 'subastas_app/index.html' %}
+
+<body>
+  {% block content %}
+
+  <!--   Formulario -->
+
+  <div class="section container">
+
+    <div class="row">
+
+      <form class="col s12" action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="col s12 center">
+          <h3><i class="black-text center"></i></h3>
+          <h4>Registro</h4>
+          <p>
+            Esta a un paso de formar parde de la mejor comunidad de subatas Online
+          </p>
+
+        </div>
+        <div class="row card-panel">
+          <!-- Nombre  -->
+          <div class="input-field col s12 m6 l6">
+            <i class="material-icons prefix">account_circle</i>
+            <input type="text" placeholder="Ingrese su nombre" id="nombre" class="validate" name="first_name"
+              value="{{ first_name }}" required>
+            <label for="nombre">Nombre</label>
+          </div>
+          <!-- Primer apellido -->
+          <div class="input-field col s12 m6 l6">
+            <i class="material-icons prefix">account_circle</i>
+            <input type="text" id="apellido" placeholder="Ingrese su primer apellido" class="validate" name="last_name"
+              value=" {{ last_name }}" required>
+            <label for="apellido">Apellido</label>
+          </div>
+          <!-- Usuario -->
+          <div class="input-field col s12 m6 l6">
+            <i class="material-icons prefix">tag_faces</i>
+            <input type="text" id="usuario" class="validate" name="username" value="{{ username }}" required>
+            <label for="usuario">Usuario</label>
+          </div>
+          <!-- Contraseña -->
+          <div class="input-field col s12 m6 l6">
+            <i class="material-icons prefix">tag_faces</i>
+            <input type="password" id="password" class="validate" name="password" value="{{ password }}" required>
+            <label for="password">Password</label>
+          </div>
+          <!-- Correo electronico -->
+          <div class="input-field col s12 m6 l6">
+            <i class="material-icons prefix">email</i>
+            <input type="email" id="email" class="validate" name="email" value="{{ email }}" required>
+            <label for="email">Correo electronico</label>
+          </div>
+          <div class="col s12 m12 l12 center-align">
+            <!-- Terminos y condiciones -->
+            <p>
+              <label>
+                <input type="checkbox" class="validate" required />
+                <span>He leido y acepto los terminos y condiciones</span>
+              </label>
+            </p>
+          </div>
+          <!-- Boton de enviar -->
+          <div class="center-align col s12 m12 l12">
+            <button class="btn" type="submit"><i class="material-icons right ">send</i> Enviar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  {% endblock %}
+
+</body>
+
+</html>
