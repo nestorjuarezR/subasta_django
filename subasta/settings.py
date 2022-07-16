@@ -113,6 +113,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+#Profile
+AUTH_PROFILE_MODULE = "subasta_app.Profile"
 
 
 # Static files (CSS, JavaScript, Images)

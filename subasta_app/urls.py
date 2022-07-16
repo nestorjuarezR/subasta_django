@@ -7,6 +7,9 @@ urlpatterns = [
    path("registro/", views.registro, name="registro"),
    path("categorias/", views.categorias_subastas, name="categorias"),                           #Pagina de que muestra las categorias
    path("categorias/<str:categoria_nombre>/", views.articulos_categoria),                     #Pagina de los articulos de categoria
+   path("subasta/<int:articulo_id>", views.subasta_articulo),
+   path('registar_articulo/',views.agregar_articulo , name='agregar'),                                #Registrar articulo
+
 
 
 

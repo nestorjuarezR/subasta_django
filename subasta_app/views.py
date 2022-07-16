@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .models import Categoria,Articulo
+from .models import Categoria,Articulo, Subasta, Profile
+
 # Create your views here.
 '''Funcion que muestra el index'''
 def index(request):
@@ -27,6 +28,8 @@ def registro(request):
       )
       user.set_password(password)
       user.save()
+
+
       next = request.GET.get("next", "/login/")
 
       return redirect(next)
@@ -54,4 +57,56 @@ def articulos_categoria(request, categoria_nombre):
     {
         'articulos': articulos,
         'categoria': categoria
+    })
+
+'''Funcion para mostrar la pagina de la subasta del articulo'''
+def subasta_articulo(request,articulo_id):
+    #Obtengo los objetos para el listado de informacion
+    articulo_subasta = Subasta.objects.filter(articulo_id = articulo_id)
+    articulo = Articulo.objects.filter(id=articulo_id)
+
+    #Actualizacion del valor de ultima puja en html
+    if request.method == "POST":
+        ultima_puja = request.POST['precio_ganador']
+        #usuario = request.user
+        articulo_subasta.Precio_ganador = ultima_puja
+        articulo_subasta.update(precio_ganador = ultima_puja)
+        
+        return redirect(request.META['HTTP_REFERER'])
+
+
+    return render(request,"./subastas_app/subasta_articulo.html",
+    {
+        'articulo_subasta' : articulo_subasta,
+        'articulo' : articulo,
+    })
+
+
+'''Funcion para que el usuario agrege articulos de una categoria'''
+def agregar_articulo(request):
+    #obtengo el nombre de las categorias
+    categorias_all = Categoria.objects.all()     
+
+    if request.method == "POST":
+        nuevo_articulo = Articulo()
+        user = request.user.id
+        nombre = request.POST['nombre']
+        categoria_id = request.POST['categoria_id']
+        descripcion = request.POST['descripcion']
+        precio_minimo = request.POST['precio_minimo']
+        imagen = request.FILES['imagen']
+
+        nuevo_articulo = Articulo(
+            user_id = user,
+            nombre = nombre,
+            descripcion = descripcion,
+            precio_minimo = precio_minimo,
+            categoria_id = categoria_id,
+            imagen = imagen
+        )
+        nuevo_articulo.save()
+        return redirect("/categorias/")
+
+    return render(request, "./subastas_app/agregar_articulo.html",{
+        'categorias': categorias_all
     })

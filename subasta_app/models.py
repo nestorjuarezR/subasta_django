@@ -3,6 +3,16 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+#Modelo de Perfil de usuario
+class Profile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='user_images', null=True, blank=True, default='./user_images/anonimo.svg')
+
+
+
+
+
+
 #Modelo de categorias
 class Categoria(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -26,3 +36,12 @@ class Articulo(models.Model):
 
     def __str__(self):
         return f'{self.nombre}, {self.descripcion}'
+
+
+class Subasta(models.Model):
+    articulo = models.OneToOneField(Articulo, on_delete=models.CASCADE)
+    user_ganador = models.ForeignKey(User, on_delete=models.CASCADE)
+    precio_ganador = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return f'Usuario ganador: {self.user_ganador}, Precio ganador: {self.precio_ganador}'
