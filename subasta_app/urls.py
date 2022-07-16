@@ -4,7 +4,9 @@ from . import views
 
 urlpatterns = [
    path("", views.index, name="index"),
-   path("registro/", views.registro, name="registro"),         
+   path("registro/", views.registro, name="registro"),
+   path("categorias/", views.categorias_subastas, name="categorias"),                           #Pagina de que muestra las categorias
+
 
       #login de usuario
    path('login/', auth_views.LoginView.as_view(
