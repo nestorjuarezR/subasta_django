@@ -22,6 +22,7 @@
   $(document).ready(function(){
     $('.materialboxed').materialbox();
   });
+  $('.tooltipped').tooltip();
   $(document).ready(function(){
     $('.carousel').carousel();
   });
