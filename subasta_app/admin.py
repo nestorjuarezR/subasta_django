@@ -1,4 +1,4 @@
-from .models import Categoria
+from .models import Categoria, Articulo
 from django.contrib import admin
 
 # Register your models here.
@@ -6,4 +6,10 @@ from django.contrib import admin
 class CategoriaAdmin(admin.ModelAdmin):
     list_categorias = ("nombre", "descripcion")
 
+
+class ArticuloAdmin(admin.ModelAdmin):
+    lista = ("nombre", "categoria", )
+
 admin.site.register(Categoria, CategoriaAdmin)
+admin.site.register(Articulo, ArticuloAdmin)
+

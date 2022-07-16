@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .models import Categoria
+from .models import Categoria,Articulo
 # Create your views here.
 '''Funcion que muestra el index'''
 def index(request):
@@ -41,4 +41,17 @@ def categorias_subastas(request):
     return render(request, "./subastas_app/categorias.html",
     {
         "categorias": categorias_all
+    })
+
+
+    '''Funcion que muestra la pagina de articulos de una categoria'''
+def articulos_categoria(request, categoria_nombre):
+    categoria = Categoria.objects.filter(nombre=categoria_nombre)
+    articulos = Articulo.objects.all()
+    #categorias = Categoria.objects.all()    
+    print(articulos)
+    return render(request, "./subastas_app/articulos.html",
+    {
+        'articulos': articulos,
+        'categoria': categoria
     })
