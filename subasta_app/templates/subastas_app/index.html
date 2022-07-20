@@ -73,7 +73,7 @@
           </div>
           
           {% if user.is_authenticated %}
-          <a href="#user"><img class="circle" src="{{ request.user.image.url }} "></a>
+          <a href="#user"><img class="circle" src="{{ request.user.profile.image.url }} "></a>
           {% else %}
           <a href="#user"><img class="circle" src="{% static '/subastas_app/images/anonimo.svg' %} "></a>
           {% endif %}

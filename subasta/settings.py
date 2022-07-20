@@ -116,6 +116,14 @@ USE_TZ = True
 #Profile
 AUTH_PROFILE_MODULE = "subasta_app.Profile"
 
+#email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "nesk.company@gmail.com"
+EMAIL_HOST_PASSWORD = "rhgkgjuykvsmvdum"
+EMAIL_PORT= 587
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

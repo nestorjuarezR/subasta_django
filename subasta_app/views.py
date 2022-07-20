@@ -1,6 +1,10 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .models import Categoria,Articulo, Subasta, Profile
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.template.loader import render_to_string
+
 
 # Create your views here.
 '''Funcion que muestra el index'''
@@ -29,7 +33,10 @@ def registro(request):
       user.set_password(password)
       user.save()
 
-
+      #Creacion del perfil
+      perfil = Profile.objects.create(user=user)
+      perfil.save()
+      
       next = request.GET.get("next", "/login/")
 
       return redirect(next)

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 #Modelo de Perfil de usuario
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='user_images', null=True, blank=True, default='./user_images/anonimo.svg')
 
 
