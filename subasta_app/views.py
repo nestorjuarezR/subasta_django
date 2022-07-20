@@ -1,9 +1,8 @@
+from email import message
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .models import Categoria,Articulo, Subasta, Profile
-from django.core.mail import EmailMessage
-from django.conf import settings
-from django.template.loader import render_to_string
+
 
 
 # Create your views here.
@@ -20,8 +19,10 @@ def registro(request):
       username = request.POST['username']
       password = request.POST['password']
       email = request.POST['email']
+      genere = request.POST['genere']
+      date_birth = request.POST['date_birth']
 
-
+    #Creo el usuario con los datos obtenidos del formulario
       user = User.objects.create_user(
          username =  username,
          email = email,
@@ -33,8 +34,12 @@ def registro(request):
       user.set_password(password)
       user.save()
 
-      #Creacion del perfil
-      perfil = Profile.objects.create(user=user)
+      #Creacion del perfil  del usuario
+      perfil = Profile.objects.create(
+        user=user,
+        genere = genere,
+        date_birth = date_birth
+        )
       perfil.save()
       
       next = request.GET.get("next", "/login/")

@@ -6,7 +6,17 @@ from django.contrib.auth.models import User
 #Modelo de Perfil de usuario
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    date_birth = models.DateField(null=True, blank=True)
+    GENERO = [
+    ("H", "Hombre"),
+    ("M", "Mujer"),
+    ("O", "Otro"),
+    ]
+    genere = models.CharField(max_length=1, choices=GENERO)
     image = models.ImageField(upload_to='user_images', null=True, blank=True, default='./user_images/anonimo.svg')
+
+    def __str__(self):
+        return f'{self.user}'
 
 
 
