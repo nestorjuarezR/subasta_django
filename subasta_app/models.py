@@ -19,10 +19,6 @@ class Profile(models.Model):
         return f'{self.user}'
 
 
-
-
-
-
 #Modelo de categorias
 class Categoria(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -33,6 +29,8 @@ class Categoria(models.Model):
 
     def __str__(self):
         return f'{self.nombre}'
+
+
 
 
 #Modelo de Articulo
@@ -46,6 +44,14 @@ class Articulo(models.Model):
 
     def __str__(self):
         return f'{self.nombre}, {self.descripcion}'
+
+
+class Publicacion(models.Model):
+    is_active = models.BooleanField(default=True, null=False, blank=False)
+    articulo = models.OneToOneField(Articulo, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.articulo}, {self.is_active}'
 
 
 class Subasta(models.Model):

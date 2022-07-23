@@ -1,7 +1,6 @@
-from email import message
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .models import Categoria,Articulo, Subasta, Profile
+from .models import Categoria,Articulo, Subasta, Profile, Publicacion
 
 
 
@@ -63,12 +62,14 @@ def categorias_subastas(request):
 def articulos_categoria(request, categoria_nombre):
     categoria = Categoria.objects.filter(nombre=categoria_nombre)
     articulos = Articulo.objects.all()
+    publicaciones = Publicacion.objects.all()
     #categorias = Categoria.objects.all()    
     print(articulos)
     return render(request, "./subastas_app/articulos.html",
     {
         'articulos': articulos,
-        'categoria': categoria
+        'categoria': categoria,
+        'publicaciones': publicaciones
     })
 
 '''Funcion para mostrar la pagina de la subasta del articulo'''
@@ -117,6 +118,14 @@ def agregar_articulo(request):
             imagen = imagen
         )
         nuevo_articulo.save()
+
+        #Crear publicacion
+        publicacion = Publicacion.objects.create(
+            articulo = nuevo_articulo
+        )
+        publicacion.save()
+
+
         return redirect("/categorias/")
 
     return render(request, "./subastas_app/agregar_articulo.html",{
