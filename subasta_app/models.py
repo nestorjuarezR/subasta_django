@@ -61,3 +61,13 @@ class Subasta(models.Model):
 
     def __str__(self):
         return f'Usuario ganador: {self.user_ganador}, Precio ganador: {self.precio_ganador}'
+
+class Puja(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    articulo = models.ForeignKey(Articulo, on_delete=models.CASCADE)
+    precio = models.IntegerField(null=False, blank=False)
+    fecha = models.DateField(auto_now=False)
+    hora = models.TimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.user} realizo la puja de: {self.precio} por el articulo {self.articulo}'

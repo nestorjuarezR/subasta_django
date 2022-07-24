@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .models import Categoria,Articulo, Subasta, Profile, Publicacion
+from .models import Categoria,Articulo, Subasta, Profile, Publicacion, Puja
 
 
 
@@ -77,6 +77,7 @@ def subasta_articulo(request,articulo_id):
     #Obtengo los objetos para el listado de informacion
     articulo_subasta = Subasta.objects.filter(articulo_id = articulo_id)
     articulo = Articulo.objects.filter(id=articulo_id)
+    puja = Puja.objects.filter(articulo_id= articulo_id)
 
     #Actualizacion del valor de ultima puja en html
     if request.method == "POST":
@@ -92,6 +93,7 @@ def subasta_articulo(request,articulo_id):
     {
         'articulo_subasta' : articulo_subasta,
         'articulo' : articulo,
+        'puja': puja
     })
 
 

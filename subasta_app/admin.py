@@ -1,4 +1,4 @@
-from .models import Categoria, Articulo, Subasta, Profile, Publicacion
+from .models import Categoria, Articulo, Subasta, Profile, Publicacion, Puja
 from django.contrib import admin
 
 # Register your models here.
@@ -20,9 +20,12 @@ class PublicacionAdmin(admin.ModelAdmin):
 class SubastaAdmin(admin.ModelAdmin):
     lista = ("articulo", "user_ganador")
 
+class PujaAdmin(admin.ModelAdmin):
+    lista = ("user", "precio")
+
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Categoria, CategoriaAdmin)
 admin.site.register(Articulo, ArticuloAdmin)
 admin.site.register(Publicacion, PublicacionAdmin)
 admin.site.register(Subasta,SubastaAdmin)
-
+admin.site.register(Puja, PujaAdmin)
