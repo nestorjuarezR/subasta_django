@@ -1,6 +1,8 @@
+from datetime import date, datetime
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .models import Categoria,Articulo, Subasta, Profile, Publicacion, Puja
+import datetime
 
 
 
@@ -77,14 +79,27 @@ def subasta_articulo(request,articulo_id):
     #Obtengo los objetos para el listado de informacion
     articulo_subasta = Subasta.objects.filter(articulo_id = articulo_id)
     articulo = Articulo.objects.filter(id=articulo_id)
-    puja = Puja.objects.filter(articulo_id= articulo_id)
+    puja = Puja.objects.filter(articulo_id= articulo_id).order_by('-fecha','-hora').values()
+    print(puja)
 
     #Actualizacion del valor de ultima puja en html
     if request.method == "POST":
-        ultima_puja = request.POST['precio_ganador']
-        #usuario = request.user
-        articulo_subasta.Precio_ganador = ultima_puja
-        articulo_subasta.update(precio_ganador = ultima_puja)
+        # ultima_puja = request.POST['precio_ganador']
+        # articulo_subasta.Precio_ganador = ultima_puja
+        # articulo_subasta.update(precio_ganador = ultima_puja)
+        print(request.user, articulo_id)
+
+        valor_puja = request.POST['valor_puja']
+        nueva_puja = Puja.objects.create(
+            user = request.user,
+            articulo_id = articulo_id,
+            precio = valor_puja,
+            fecha = datetime.datetime.now()
+            #hora = datetime.datetime.now().strftime('%M:%H:%S')
+            )
+        nueva_puja.save()
+            
+            
         
         return redirect(request.META['HTTP_REFERER'])
 
