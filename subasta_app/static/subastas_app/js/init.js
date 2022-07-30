@@ -13,7 +13,7 @@
       firstDay: 1,
       selectYears: 90,
       format: 'yyyy-mm-dd',
-      yearRange: [1910, 2022]
+      yearRange: [1910, 2023]
   });
   $('.slider').slider({
     indicators: false,

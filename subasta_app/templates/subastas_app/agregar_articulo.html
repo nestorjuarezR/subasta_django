@@ -26,10 +26,10 @@
                     <!-- Seleccion de Categoria -->
                     <div class="input-field col s12 m6 l6">
                         <select class="browser-default" name="categoria_id">
-                        <option value=""  disabled selected>Categoria</option>
-                        {% for item in categorias %}
-                        <option value="{{ item.id }}" selected>{{ item.nombre }}</option>
-                        {% endfor %}
+                            <option value="" disabled selected>Categoria</option>
+                            {% for item in categorias %}
+                            <option value="{{ item.id }}" selected>{{ item.nombre }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <!-- Ingreso de descripcion -->
@@ -41,13 +41,19 @@
                             <label for="descripcion">Descripcion</label>
                         </div>
                     </div>
-                    <!-- Usuario -->
+                    <!-- Precio -->
                     <div class="input-field col s12 m6 l6">
                         <i class="material-icons prefix">attach_money</i>
                         <input type="number" id="precio_minimo" class="validate" name="precio_minimo"
                             value="{{ precio_minimo }}" required>
                         <label for="precio_minimo">Precio de apertura</label>
                     </div>
+                    <!-- Fecha del cierre de la subasta YYYY-MM-DD -->
+                    <!-- <div class="input-field col s12 m6 l6 ">
+                        <i class="material-icons prefix">insert_invitation</i>
+                        <input id="dtp" class="datepicker " type="text" name="fecha_limite" required>
+                        <label for="dtp"> Fecha de cierre de subasta</label>
+                    </div> -->
                     <!-- Fotografias -->
                     <div class="file-field input-field col l12">
                         <div class="btn">

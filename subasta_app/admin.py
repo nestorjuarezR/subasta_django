@@ -3,25 +3,26 @@ from django.contrib import admin
 
 # Register your models here.
 class ProfileAdmin(admin.ModelAdmin):
-    lista = ("user")
+    list_display = ("id","user")
 
 
 class CategoriaAdmin(admin.ModelAdmin):
-    list_categorias = ("nombre", "descripcion")
+    list_display = ("nombre", "descripcion")
 
 
 class ArticuloAdmin(admin.ModelAdmin):
-    lista = ("nombre", "categoria", )
+    list_display = ("nombre", "categoria")
+    search_fields = ("id", "user", "nombre")
 
 
 class PublicacionAdmin(admin.ModelAdmin):
-    lista = ("articulo", "is_active")
+    list_display = ("articulo", "is_active")
 
 class SubastaAdmin(admin.ModelAdmin):
-    lista = ("articulo", "user_ganador")
+    list_display = ("articulo", "user_ganador")
 
 class PujaAdmin(admin.ModelAdmin):
-    lista = ("user", "precio")
+    list_display = ("user", "precio")
 
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Categoria, CategoriaAdmin)

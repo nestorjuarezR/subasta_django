@@ -84,10 +84,6 @@ def subasta_articulo(request,articulo_id):
 
     #Actualizacion del valor de ultima puja en html
     if request.method == "POST":
-        # ultima_puja = request.POST['precio_ganador']
-        # articulo_subasta.Precio_ganador = ultima_puja
-        # articulo_subasta.update(precio_ganador = ultima_puja)
-        print(request.user, articulo_id)
 
         valor_puja = request.POST['valor_puja']
         nueva_puja = Puja.objects.create(
@@ -124,6 +120,7 @@ def agregar_articulo(request):
         categoria_id = request.POST['categoria_id']
         descripcion = request.POST['descripcion']
         precio_minimo = request.POST['precio_minimo']
+        #fecha_limite = request.PSOT['fecha_limite']
         imagen = request.FILES['imagen']
 
         nuevo_articulo = Articulo(
