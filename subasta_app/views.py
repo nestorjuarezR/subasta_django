@@ -139,6 +139,13 @@ def agregar_articulo(request):
         )
         publicacion.save()
 
+        subasta = Subasta.objects.create(
+            user_ganador = request.user,
+            articulo = nuevo_articulo,
+            fecha_limite = datetime.datetime.now() + datetime.timedelta(30)
+        )
+        subasta.save()
+
 
         return redirect("/categorias/")
 
