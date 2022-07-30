@@ -25,11 +25,8 @@
                         <div class="card-panel  center-align teal lighten-1 "> Precio de
                             apertura:${{item.precio_minimo }}</div>
                         {% endfor %}
-
-                        {% for info in articulo_subasta %}
-                        <div class="card-panel center-align amber lighten-1"> Ultima puja:${{info.precio_ganador }}
+                        <div class="card-panel center-align amber lighten-1"> Ultima puja:${{ ultima_puja.precio }}
                         </div>
-                        {% endfor %}
                         <div class="row valign-wrapper">
                             <div class="col l6">
                                 <h5>Ofertar </h5>

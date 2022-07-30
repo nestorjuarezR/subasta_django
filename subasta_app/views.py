@@ -80,7 +80,8 @@ def subasta_articulo(request,articulo_id):
     articulo_subasta = Subasta.objects.filter(articulo_id = articulo_id)
     articulo = Articulo.objects.filter(id=articulo_id)
     puja = Puja.objects.filter(articulo_id= articulo_id).order_by('-fecha','-hora').values()
-    print(puja)
+    ultima_puja = Puja.objects.filter(articulo_id= articulo_id).order_by('-fecha','-hora').values()[0]
+    #print(ultima_puja)
 
     #Actualizacion del valor de ultima puja en html
     if request.method == "POST":
@@ -104,7 +105,8 @@ def subasta_articulo(request,articulo_id):
     {
         'articulo_subasta' : articulo_subasta,
         'articulo' : articulo,
-        'puja': puja
+        'puja': puja,
+        'ultima_puja': ultima_puja
     })
 
 
