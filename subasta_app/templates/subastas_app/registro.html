@@ -1,4 +1,5 @@
 {% extends 'subastas_app/index.html' %}
+{% load static %}
 
 <body>
   {% block content %}
@@ -15,10 +16,12 @@
         <div class="col s12 center">
           <h3><i class="black-text center"></i></h3>
           <h4>Registro</h4>
+          <div class="col l12">
+            <img src="{% static '/subastas_app//images/yes.svg' %} " alt="">
+          </div>
           <p>
             Esta a un paso de formar parde de la mejor comunidad de subatas Online
           </p>
-
         </div>
         <div class="row card-panel center-align">
           <!-- Nombre  -->
