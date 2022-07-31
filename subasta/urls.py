@@ -22,3 +22,5 @@ urlpatterns = [
     path("", include("subasta_app.urls")),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = "subasta_app.views.page_not_found_view"

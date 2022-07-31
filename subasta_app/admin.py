@@ -11,7 +11,7 @@ class CategoriaAdmin(admin.ModelAdmin):
 
 
 class ArticuloAdmin(admin.ModelAdmin):
-    list_display = ("nombre", "categoria")
+    list_display = ("nombre", "categoria", "user")
     search_fields = ("id", "user", "nombre")
 
 

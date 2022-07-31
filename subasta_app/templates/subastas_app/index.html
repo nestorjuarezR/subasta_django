@@ -36,10 +36,8 @@
     <!-- Dropdown Structure de la seccion Perfil -->
     <ul id="dropdown1" class="dropdown-content">
       {% if user.is_authenticated %}
-      <li><a href="/perfil/">{{ user }}</a></li>
+      <li><a href="/perfil/">Perfil</a></li>
       {% endif %}
-      <li><a href="/">Configuracion</a></li>
-      <li><a href="/">Subastas</a></li>
     </ul>
   
     <!-- Barra de navegacion -->
@@ -52,7 +50,7 @@
           <li><a href="#"></a></li>
           <li><a href="/categorias/">Categorias</a></li>
           {% if user.is_authenticated %}
-          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Perfil<i
+          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">{{request.user}}<i
                 class="material-icons right">arrow_drop_down</i></a></li>
           <li><a class="waves-effect waves-light btn  red darken-3" href="/logout/">Log-out</a></li>
           {% else %}
@@ -85,7 +83,7 @@
       </li>
       {% if user.is_authenticated %}
       <li><a class="waves-effect waves-light btn  red darken-3" href="/logout/">Log-out</a></li>
-      <li><a href="/perfil/"><i class="material-icons">person</i>Perfil</a></li>
+      <li><a href="/perfil/"><i class="material-icons">person</i>{{ request.user }}</a></li>
       {% else %}
       <li><a class="waves-effect waves-light btn" href="/login/"></i>Login</a></li>
       <li><a href="/registro/"><i class="material-icons">person</i>Registrarse</a></li>
@@ -124,14 +122,14 @@
         </li>
         <li>
           <img src="{% static '/subastas_app/images/libros.jpg' %} "> <!-- random image -->
-          <div class="caption left-align">
+          <div class="caption right-align">
             <h3>Historias del pasado</h3>
-            <h5 class="light grey-text text-lighten-3">Completa tu coleccion con el libro</h5>
+            <h5 class="light grey-text text-lighten-3">Completa tu coleccion</h5>
           </div>
         </li>
         <li>
           <img src="{% static '/subastas_app/images/viniles.jpg' %} "> <!-- random image -->
-          <div class="caption center-align">
+          <div class="caption left-align">
             <h3>Recuerdos en musica</h3>
             <h5 class="light grey-text text-lighten-3">Transladate a esos años de musica increible</h5>
           </div>

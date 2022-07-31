@@ -1,0 +1,57 @@
+{% extends 'subastas_app/index.html' %}
+{% load static %}
+
+<body>
+
+    {% block content %}
+    <div class="section container">
+
+        <div class="row">
+
+            <form class="col s12" action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="col s12 center">
+                    <h3><i class="black-text center"></i></h3>
+                    <h4>Confirmación de eliminación de cuenta</h4>
+
+
+                    <img width="500px" height="500px" src="{% static '/subastas_app/images/borrar_cuenta.svg' %} "
+                        alt="">
+
+                </div>
+                <div class="row card-panel center-align">
+                    <div class="col l12">
+                        <p>¿Desea eliminar permanente su cuenta?</p>
+                    </div>
+                    <div class="col l12 ">
+                        <div class="col l3 offset-l3 ">
+                            <p>
+                                <label>
+                                    <input type="checkbox"  name="confirmacion" value="True"/>
+                                    <span>Si</span>
+                                </label>
+                            </p>
+                        </div>
+                        <div class="col l3 ">
+                            <p>
+                                <label>
+                                    <input type="checkbox"  name="confirmacion" value="False"/>
+                                    <span>No</span>
+                                </label>
+                            </p>
+                        </div>
+                    </div>
+                    </div>
+
+                    <!-- Boton de enviar -->
+                    <div class="center-align col s12 m12 l12">
+                        <button class="btn" type="submit"><i class="material-icons right ">send</i> Enviar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock content %}
+
+</body>

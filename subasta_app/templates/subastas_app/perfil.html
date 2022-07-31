@@ -1,0 +1,56 @@
+{% extends 'subastas_app/index.html' %}
+
+<body>
+
+    {% block content %}
+    <div class="section container">
+        <div class="row">
+            <div class="col l12 tittle">
+                <h4>Perfil</h4>
+                <div class="divider"></div>
+            </div>
+            <div class="section">
+                <div class="section col m4  l5 "></div>
+                <img class="circle" src="{{ request.user.profile.image.url }}" width="200px" height="200px">
+            </div>
+            <div class="section center-align">
+                <ul class="collapsible">
+                    <li class="active">
+                        <div class="collapsible-header"><i class="material-icons">person_outline</i>Información</div>
+                        <div class="collapsible-body">
+                            <span>
+                                Nombre: {{ request.user.first_name }} <br>
+                                Apellido: {{ request.user.last_name }} <br>
+                                Fecha de nacimiento : {{ request.user.profile.date_birth}} <br>
+                                Fecha de registo: {{ request.user.date_joined }}
+                            </span> 
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">work</i>Articulos</div>
+                        <div class="collapsible-body">
+                            <span>
+                                {% for item  in articulo %}
+                                <a href="/subasta/{{ item.id }}"> {{ item.nombre }} </a> <br>
+                                {% endfor %}
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">build</i>Configuración</div>
+                        <div class="collapsible-body">
+                            <div class="col">
+                                <i class="material-icons">delete</i>
+                            </div>
+                            <div class="col">
+                                <a class="red-text text-darken-3" href="eliminar_cuenta/">Eliminar cuenta</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+
+</body>

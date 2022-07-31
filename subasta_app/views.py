@@ -1,6 +1,7 @@
 from datetime import  datetime
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Categoria,Articulo, Subasta, Profile, Publicacion, Puja
 import datetime
 
@@ -60,7 +61,8 @@ def categorias_subastas(request):
     })
 
 
-    '''Funcion que muestra la pagina de articulos de una categoria'''
+'''Funcion que muestra la pagina de articulos de una categoria'''
+@login_required()
 def articulos_categoria(request, categoria_nombre):
     categoria = Categoria.objects.filter(nombre=categoria_nombre)
     articulos = Articulo.objects.all()
@@ -74,6 +76,7 @@ def articulos_categoria(request, categoria_nombre):
     })
 
 '''Funcion para mostrar la pagina de la subasta del articulo'''
+@login_required()
 def subasta_articulo(request,articulo_id):
     #Obtengo los objetos para el listado de informacion
     articulo_subasta = Subasta.objects.filter(articulo_id = articulo_id)
@@ -104,6 +107,7 @@ def subasta_articulo(request,articulo_id):
 
 
 '''Funcion para que el usuario agrege articulos de una categoria'''
+@login_required()
 def agregar_articulo(request):
     #obtengo el nombre de las categorias
     categorias_all = Categoria.objects.all()     
@@ -147,3 +151,22 @@ def agregar_articulo(request):
     return render(request, "./subastas_app/agregar_articulo.html",{
         'categorias': categorias_all
     })
+
+
+
+def page_not_found_view(request, exception):
+    return render(request, "./subastas_app/404.html", status=(404, 500))
+
+@login_required()
+def profile(request):
+    usuario = User.objects.all()
+    articulos = Articulo.objects.filter(user_id=request.user.id)
+    return render(request, "./subastas_app/perfil.html",{
+        'usuario' : usuario,
+        'articulo':articulos
+    })
+
+@login_required()
+def eliminar_cuenta(request):
+    
+    return render(request, "./subastas_app/borrar_cuenta.html")

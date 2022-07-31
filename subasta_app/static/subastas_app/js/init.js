@@ -30,6 +30,7 @@
   // $('#descripcion').val('');
   // M.textareaAutoResize($('#descripcion'));
   $('input#input_text, textarea#descripcion').characterCounter();
+  $('.collapsible').collapsible();
   }); // end of document ready
 })(jQuery); // end of jQuery name space
 
