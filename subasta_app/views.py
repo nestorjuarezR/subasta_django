@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import  datetime
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .models import Categoria,Articulo, Subasta, Profile, Publicacion, Puja
@@ -65,8 +65,7 @@ def articulos_categoria(request, categoria_nombre):
     categoria = Categoria.objects.filter(nombre=categoria_nombre)
     articulos = Articulo.objects.all()
     publicaciones = Publicacion.objects.all()
-    #categorias = Categoria.objects.all()    
-    print(articulos)
+
     return render(request, "./subastas_app/articulos.html",
     {
         'articulos': articulos,
@@ -80,24 +79,18 @@ def subasta_articulo(request,articulo_id):
     articulo_subasta = Subasta.objects.filter(articulo_id = articulo_id)
     articulo = Articulo.objects.filter(id=articulo_id)
     puja = Puja.objects.filter(articulo_id= articulo_id).order_by('-fecha','-hora').values()
-    ultima_puja = Puja.objects.filter(articulo_id= articulo_id).order_by('-fecha','-hora').values()[0]
-    #print(ultima_puja)
+    usuario = User.objects.all()
 
     #Actualizacion del valor de ultima puja en html
     if request.method == "POST":
-
         valor_puja = request.POST['valor_puja']
         nueva_puja = Puja.objects.create(
             user = request.user,
             articulo_id = articulo_id,
             precio = valor_puja,
             fecha = datetime.datetime.now()
-            #hora = datetime.datetime.now().strftime('%M:%H:%S')
             )
-        nueva_puja.save()
-            
-            
-        
+        nueva_puja.save()           
         return redirect(request.META['HTTP_REFERER'])
 
 
@@ -106,7 +99,7 @@ def subasta_articulo(request,articulo_id):
         'articulo_subasta' : articulo_subasta,
         'articulo' : articulo,
         'puja': puja,
-        'ultima_puja': ultima_puja
+        'usuarios': usuario,
     })
 
 

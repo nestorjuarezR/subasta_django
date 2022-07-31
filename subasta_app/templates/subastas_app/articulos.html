@@ -8,7 +8,6 @@
         <div class="row">
             <!-- Inicio del ciclo for para mostar las categorias -->
             <div class="divider"></div>
-
             {% for categoria_info in categoria %}
 
             
@@ -28,8 +27,9 @@
                             <i class="material-icons right">keyboard_arrow_up</i>
                         </span>
                         <div class="section_precios">
-                            <p class="info_precios black-text grey lighten-1">Precio de entrada: ${{ articulo_info.precio_minimo }}</p>
-                            <p class="info_precios amber deep-orange-text text-darken-4">Ultima puja realizada: $ </p>
+                            <!-- <p class="col l12 info_precios black-text grey lighten-1">Precio de entrada: ${{ articulo_info.precio_minimo }}</p> -->
+                            <p class="info_precios amber deep-orange-text text-darken-4">Ultima puja realizada: $ {{ articulo_info.puja.precio }}</p>
+                            <p class="">Fecha limite: {{ articulo_info.subasta.fecha_limite  }}</p>
                         </div>
                     </div>
                     <div class="card-reveal">
